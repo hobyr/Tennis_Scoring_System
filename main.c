@@ -2,67 +2,50 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void display_score(int player_1_score, int player_2_score);
-int add_point_player(int player_score, bool deuce);
-bool check_deuce(int player_1_score, int player_2_score);
+void display_score(int *players_scores) {
+  printf("%d - %d\n", players_scores[0], players_scores[1]);
+}
+
+void display_name(char *player_name) {
+  printf("%s\n", player_name);
+}
 
 int main(int argc, char *argv[])
 {
-  char player_1_name[20] = "";
-  char player_2_name[20] = "";
+  char player_1_name[20] = "Wolf";
+  char player_2_name[20] = "Garin";
 
-  int player_1_sets = 0;
-  int player_2_sets = 0;
+  int players_sets[2] = {0, 0};
 
-  int player_1_games = 0;
-  int player_2_games = 0;
+  int players_games[2] = {0, 0};
 
-  int player_1_score = 0;
-  int player_2_score = 0;
+  int players_score[2] = {0, 15};
 
   bool is_deuce = false;
   bool is_match_over = false;
 
-  printf("Please start the match.");
+  printf("Please start the match.\n");
 
+  /*
   while (!is_match_over) {
-    is_deuce = check_deuce(player_1_score, player_2_score);
-
     printf("Who won this point? [1 or 2] ");
     int player_point_won;
     scanf("%d", &player_point_won);
 
     if (is_deuce) {
       // Deuce game
-      if (player_point_won == 1) {
-        player_1_score = add_point_player(player_1_score, is_deuce);
-      } else {
-        player_2_score = add_point_player(player_2_score, is_deuce);
-      }
     } else {
       // Normal game
-      if (player_point_won == 1) {
-        player_1_score = add_point_player(player_1_score, is_deuce);
-      } else {
-        player_2_score = add_point_player(player_2_score, is_deuce);
-      }
     }
-    display_score(player_1_score, player_2_score);
   }
+  */
+
+  display_score(players_score);
+  display_name(player_2_name);
 
   return 0;
 }
 
-void display_score(int player_1_score, int player_2_score)
-{
-  if (player_1_score == 45) {
-    printf("AD - %d\n", player_2_score);
-  } else if (player_2_score == 45) {
-    printf("%d - AD\n", player_1_score);
-  } else {
-    printf("%d - %d\n", player_1_score, player_2_score);
-  }
-}
 
 int add_point_player(int player_score, bool deuce)
 {
